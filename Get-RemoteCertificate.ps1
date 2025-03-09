@@ -1,7 +1,33 @@
-# Based on Get-RemoteSSLCertificate.ps1 from https://gist.github.com/jstangroome/5945820 by https://github.com/jstangroome
+  <#
+    .DESCRIPTION
+    Retrieves TLS certificate from a remote endpoint.
+
+    .PARAMETER InputObject
+    Specifies the computer name(s).
+
+    .PARAMETER Port
+    Specifies the port.
+
+    .EXAMPLE
+    Get-RemoteCertificate -ComputerName 'webserver' -Port 443
+
+    .EXAMPLE
+    Get-RemoteCertificate -ComputerName 'dc.fqdn' -Port 636
+
+    .OUTPUTS
+    System.Security.Cryptography.X509Certificates.X509Certificate2
+
+    .NOTES
+    Based on Get-RemoteSSLCertificate.ps1 from https://github.com/jstangroome.
+
+    .LINK
+    https://gist.github.com/jstangroome/5945820
+    https://github.com/jstangroome
+#>
 
 function Get-RemoteCertificate {
     [CmdletBinding()]
+    [OutputType([System.Security.Cryptography.X509Certificates.X509Certificate2])]
     param (
         [Parameter(Mandatory=$true, ValueFromPipeline=$true)]
         [ValidateNotNullOrEmpty()]

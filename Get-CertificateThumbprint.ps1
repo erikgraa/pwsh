@@ -1,5 +1,20 @@
+  <#
+    .DESCRIPTION
+    Retrieves SHA1 and SHA256 thumbprint for an X509.2 certificate.
+
+    .PARAMETER InputObject
+    Specifies the X509 certificate(s).
+
+    .EXAMPLE
+    Get-ChildItem -Path Cert:\LocalMachine\My | % { Get-CertificateThumbprint }
+
+    .OUTPUTS
+    PSCustomObject.
+#>
+
 function Get-CertificateThumbprint {
-    [CmdletBinding()]    
+    [CmdletBinding()]
+    [OutputType([PSCustomObject])]
     param (
         [Parameter(Mandatory=$true, ValueFromPipeline=$true)]
         [System.Security.Cryptography.X509Certificates.X509Certificate2[]]$InputObject
